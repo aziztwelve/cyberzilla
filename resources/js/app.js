@@ -7,7 +7,36 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VueRouter from 'vue-router'
+import { BootstrapVue } from 'bootstrap-vue'
 
+Vue.use(BootstrapVue)
+Vue.use(VueRouter)
+
+
+import Todos from './components/Todos'
+import User from './components/User'
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/todos',
+            name: 'todos',
+            component: Todos
+        },
+        {
+            path: '/home',
+            name: 'user',
+            component: User,
+        },
+        {
+            path: '/user',
+            name: 'user',
+            component: User,
+        },
+    ],
+});
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -29,4 +58,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    router
 });
